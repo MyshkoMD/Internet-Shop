@@ -1,4 +1,4 @@
-export const instrumets = [
+ export const instruments = [
     {
         id: 1,
         name: "Мотообприскувач ранцевий Dnipro-M 14 Turbo",

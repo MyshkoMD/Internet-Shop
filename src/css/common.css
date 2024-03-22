@@ -16,6 +16,12 @@ img {
   display: block;
   max-width: 100%;
 }
+
 li {
-list-style-type: none;
+  list-style-type: none;
+}
+
+.card {
+  background-color: white;
+  width: 600px;
 }
