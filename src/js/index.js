@@ -4,36 +4,30 @@ import { instruments } from "./backend.js";
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
-
-console.dir("aefaefafe");
-
-
-const list = document.querySelector(".list");
-const input = document.querySelector(".js-input");
+import { common } from './common.js';
+import { buttonRemove } from './helpers/toggleButtons.js';
+import { createMarkup } from "./helpers/CreateMarkup.js";
 
 
-function createMarkup(arr) {
-    const markup = arr.map(({ id, img, name }) => ` <li class="js-card" data-id="${id}">
-        <img src="${img}" alt="${name}">
-        <a href="#">
-          <p>${name}</p>
-        </a>
-        <p>
-        <a href="#" class="js-info" >
-           More info...
-        </a>
-        </p>
-        <div>
-        <button class = "js-favorite">Add to Favorite</button> 
-        <button class = "js-baslet">Add to Basket</button>
-        </div>
-      </li>`).join('');
-   
-list.innerHTML = markup;
 
-}
+const list = document.querySelector(".js-list");
 
-createMarkup(instruments);
+const search = document.querySelector(".js-input");
+const favoriteArr = JSON.parse(localStorage.getItem(common.KEY_FAVORITE)) ?? [];
+const basketArr = JSON.parse(localStorage.getItem(common.KEY_BASKET)) ??[];
+
+
+
+
+
+
+createMarkup(instruments, list);
+
+buttonRemove(favoriteArr, basketArr, list);
+
+
+
+
 
 
 
@@ -45,7 +39,7 @@ function onClick(evt) {
   if (evt.target.classList.contains("js-info")) {
    
     const product = findProduct(evt.target);
-    console.log(product);
+
     const instance = basicLightbox.create(`
  <div class="card">
  <img src="${product.img}" alt="${product.name} " width ="300">
@@ -55,8 +49,10 @@ function onClick(evt) {
         </a>
         <p>${product.description}</p>
         <div>
-        <button class = "js-favorite">Add to Favorite</button> 
-        <button class = "js-baslet">Add to Basket</button>
+       <button class = "js-favorite">Add to Favorite</button> 
+        <button class = "js-RemoveFromFavorite" hidden>Remove from Favorite</button> 
+        <button class = "js-basket">Add to Basket</button>
+        <button class = "js-RemoveFromBasket" hidden>Remove from Basket</button>
         </div></div>
 `);
     instance.show();
@@ -64,18 +60,40 @@ function onClick(evt) {
   if (evt.target.classList.contains("js-favorite")) {
     
     const product = findProduct(evt.target);
+    const isProductExist = favoriteArr.some(({ id }) => id === product.id);
+    if (isProductExist) {
+      return
+    }
+
+    favoriteArr.push(product);
+
+  
+    // evt.target.nextElementSibling.removeAttribute('hidden');
+    // evt.target.setAttribute('hidden', 'true');
+    localStorage.setItem(common.KEY_FAVORITE, JSON.stringify(favoriteArr));
+    buttonRemove(favoriteArr, basketArr, list);
+
+
     
   };
   if (evt.target.classList.contains("js-basket")) {
     
     const product = findProduct(evt.target);
+      
+  
+    basketArr.push(product);
+
+    // evt.target.nextElementSibling.removeAttribute('hidden');
+    // evt.target.setAttribute('hidden', 'true');
+    localStorage.setItem(common.KEY_BASKET, JSON.stringify(basketArr));
+    buttonRemove(favoriteArr, basketArr, list);
     
   }
 };
 
 
 function findProduct(elem) {
-  const { id: productId } = elem.closest('.js-card').dataset;
+  const productId = Number(elem.closest('.js-card').dataset.id);
   return instruments.find(({ id }) => id === productId);
   
 }
