@@ -16,7 +16,7 @@
     {
         id: 3,
         name: "Акумуляторна шліфмашина Dnipro-M CG-12BC Ultra (без АКБ та ЗП)",
-        img: "https://static.dnipro-m.ua/cache/products/4381/catalog_origin_303588.jpg",
+        img: "https://static.dnipro-m.ua/cache/products/6568/catalog_origin_302816.jpg",
         price: 2799,
         description: "Акумуляторна кутошліфувальна машина CG-12BC Ultra — хороший вибір для виконання наступних завдань: Різання листового металу, Різання профілів, Різання пластикових підвіконь, Зачищення металу, Різання керамограніт",
     },

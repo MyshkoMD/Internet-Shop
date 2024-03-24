@@ -1,11 +1,6 @@
 import { common } from "./common";
 import { createMarkup } from "./helpers/CreateMarkup";
 import { buttonRemove } from "./helpers/toggleButtons";
-import { onClickButton } from "./helpers/onClickButtom";
-
-
-
-
 
 const list = document.querySelector('.js-list');
 const favorite = JSON.parse(localStorage.getItem(common.KEY_FAVORITE)) ?? [];
