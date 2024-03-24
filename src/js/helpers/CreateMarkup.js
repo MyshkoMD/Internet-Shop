@@ -1,3 +1,5 @@
+
+
 function createMarkup(arr, list) {
     const markup = arr.map(({ id, img, name }) => ` <li class="js-card" data-id="${id}">
         <img src="${img}" alt="${name}">

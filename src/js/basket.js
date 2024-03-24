@@ -23,7 +23,7 @@ list.addEventListener("click", onClick);
 
 
 function onClick(evt) {
-    
+    evt.preventDefault();
     if (evt.target.classList.contains("js-favorite")||evt.target.classList.contains("js-RemoveFromFavorite")) {
         onClickButton(evt, favorite, basket);
     }

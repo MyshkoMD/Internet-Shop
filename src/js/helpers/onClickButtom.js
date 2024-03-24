@@ -34,10 +34,14 @@ function onClickButton(evt, favoriteArr, basketArr) {
 
     const product = findProduct(evt.target)
     favoriteArr.find((item, idx) => {
-      
+
       
       if (item.id === product.id) {
+        console.dir(item.id === product.id);
+        
+     
         const removeAttribute = list.querySelector(`[data-id="${item.id}"]`);
+        console.dir(removeAttribute);
         favoriteArr.splice(idx, 1)
         
         localStorage.setItem(common.KEY_FAVORITE, JSON.stringify(favoriteArr));
