@@ -5,8 +5,11 @@ import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
 import { common } from './common.js';
-import { buttonRemove } from './helpers/toggleButtons.js';
+import { buttonRemove } from './helpers/buttonRemove.js';
 import { createMarkup } from "./helpers/CreateMarkup.js";
+import { onClickButton } from "./helpers/onClickButtom.js";
+import { findProduct } from "./helpers/findProduct.js";
+
 
 
 
@@ -49,52 +52,16 @@ function onClick(evt) {
         </a>
         <p>${product.description}</p>
         <div>
-       <button class = "js-favorite">Add to Favorite</button> 
-        <button class = "js-RemoveFromFavorite" hidden>Remove from Favorite</button> 
-        <button class = "js-basket">Add to Basket</button>
-        <button class = "js-RemoveFromBasket" hidden>Remove from Basket</button>
+          <button class = "js-favorite">Add to Favorite</button> 
+          <button class = "js-RemoveFromFavorite" hidden>Remove from Favorite</button> 
+          <button class = "js-basket">Add to Basket</button>
+          <button class = "js-RemoveFromBasket" hidden>Remove from Basket</button>
         </div></div>
 `);
     instance.show();
   }
-  if (evt.target.classList.contains("js-favorite")) {
-    
-    const product = findProduct(evt.target);
-    const isProductExist = favoriteArr.some(({ id }) => id === product.id);
-    if (isProductExist) {
-      return
-    }
-
-    favoriteArr.push(product);
-
-  
-    // evt.target.nextElementSibling.removeAttribute('hidden');
-    // evt.target.setAttribute('hidden', 'true');
-    localStorage.setItem(common.KEY_FAVORITE, JSON.stringify(favoriteArr));
-    buttonRemove(favoriteArr, basketArr, list);
-
-
-    
-  };
-  if (evt.target.classList.contains("js-basket")) {
-    
-    const product = findProduct(evt.target);
-      
-  
-    basketArr.push(product);
-
-    // evt.target.nextElementSibling.removeAttribute('hidden');
-    // evt.target.setAttribute('hidden', 'true');
-    localStorage.setItem(common.KEY_BASKET, JSON.stringify(basketArr));
-    buttonRemove(favoriteArr, basketArr, list);
-    
-  }
+  onClickButton(evt,favoriteArr,basketArr);
 };
 
 
-function findProduct(elem) {
-  const productId = Number(elem.closest('.js-card').dataset.id);
-  return instruments.find(({ id }) => id === productId);
-  
-}
 
