@@ -18,7 +18,6 @@ list.addEventListener("click", onClick);
 
 
 function onClick(evt) {
-   
      if (evt.target.classList.contains("js-basket")||evt.target.classList.contains("js-RemoveFromBasket")) {
         onClickButton(evt, favorite, basket);
     }
@@ -26,7 +25,6 @@ function onClick(evt) {
     if (evt.target.classList.contains("js-RemoveFromFavorite")) {
         onClickButton(evt, favorite, basket);
         createMarkup(favorite, list);
-
     }
     
 };

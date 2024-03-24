@@ -10,22 +10,3 @@ const basket = JSON.parse(localStorage.getItem(common.KEY_BASKET)) ?? [];
 
 createMarkup(basket, list);
 buttonRemove(favorite, basket, list);
-
-
-
-list.addEventListener("click", onClick);
-
-
-
-function onClick(evt) {
-    evt.preventDefault();
-    if (evt.target.classList.contains("js-favorite")||evt.target.classList.contains("js-RemoveFromFavorite")) {
-        onClickButton(evt, favorite, basket);
-    }
-    // return // написати поведінку видалення із сторінки при натисканні кнопки ремувфромбаскет
-    if (evt.target.classList.contains("js-RemoveFromBasket")) {
-        onClickButton(evt, favorite, basket);
-        createMarkup(basket, list);
-    }
-    
-};
