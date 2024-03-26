@@ -9,6 +9,7 @@ import { buttonRemove } from './helpers/buttonRemove.js';
 import { createMarkup } from "./helpers/CreateMarkup.js";
 import { onClickButton } from "./helpers/onClickButtom.js";
 import { findProduct } from "./helpers/findProduct.js";
+import { modalWindow } from "./helpers/modal.js";
 
 
 
@@ -21,15 +22,8 @@ const basketArr = JSON.parse(localStorage.getItem(common.KEY_BASKET)) ??[];
 
 
 
-
-
-
 createMarkup(instruments, list);
-
 buttonRemove(favoriteArr, basketArr, list);
-
-
-
 
 
 
@@ -43,22 +37,7 @@ function onClick(evt) {
    
     const product = findProduct(evt.target);
 
-    const instance = basicLightbox.create(`
- <div class="card">
- <img src="${product.img}" alt="${product.name} " width ="300">
-        <h2>${product.price} грн</h2>
-        <a href="#">
-          <p>${product.name}</p>
-        </a>
-        <p>${product.description}</p>
-        <div>
-          <button class = "js-favorite">Add to Favorite</button> 
-          <button class = "js-RemoveFromFavorite" hidden>Remove from Favorite</button> 
-          <button class = "js-basket">Add to Basket</button>
-          <button class = "js-RemoveFromBasket" hidden>Remove from Basket</button>
-        </div></div>
-`);
-    instance.show();
+    modalWindow(product)
   }
   onClickButton(evt,favoriteArr,basketArr);
 };

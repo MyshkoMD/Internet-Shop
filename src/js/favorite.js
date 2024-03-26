@@ -2,7 +2,8 @@ import { common } from "./common";
 import { createMarkup } from "./helpers/CreateMarkup";
 import { buttonRemove } from "./helpers/buttonRemove";
 import { onClickButton } from "./helpers/onClickButtom";
-
+import { modalWindow } from "./helpers/modal";
+import { findProduct } from "./helpers/findProduct";
 
 
 
@@ -23,6 +24,18 @@ list.addEventListener("click", onClick);
 
 
 function onClick(evt) {
+
+    evt.preventDefault();
+
+
+    if (evt.target.classList.contains("js-info")) {
+   
+    const product = findProduct(evt.target);
+
+        modalWindow(product);
+    };
+
+
      if (evt.target.classList.contains("js-basket")||evt.target.classList.contains("js-RemoveFromBasket")) {
          onClickButton(evt, favorite, basket);
        
