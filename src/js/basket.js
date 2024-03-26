@@ -43,8 +43,7 @@ console.dir(evt.target);
     };
 
     if (evt.target.classList.contains("js-delete")) {
-        console.dir(evt.target);
-
+        
         basket.splice(0, basket.length);
         localStorage.setItem(common.KEY_BASKET, JSON.stringify(basket));
 

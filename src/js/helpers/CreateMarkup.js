@@ -1,5 +1,11 @@
 function createMarkup(arr, list) {
-    const markup = arr.map(({ id, img, name }) => ` <li class="js-card" data-id="${id}">
+  let markup = '';
+  if (!arr.length) {
+   
+    markup = ' <img src="https://r-10.com.ua/tpl/img/ui/cart-empty.svg" alt="Empty"> ';
+   
+  } else {
+    markup = arr.map(({ id, img, name }) => ` <li class="js-card" data-id="${id}">
         <img src="${img}" alt="${name}">
         <a href="#">
           <p>${name}</p>
@@ -16,6 +22,7 @@ function createMarkup(arr, list) {
         <button class = "js-RemoveFromBasket" hidden>Remove from Basket</button> 
         </div>
       </li>`).join('');
+  }
    
 list.innerHTML = markup;
 
