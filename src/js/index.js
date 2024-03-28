@@ -10,12 +10,13 @@ import { createMarkup } from "./helpers/CreateMarkup.js";
 import { onClickButton } from "./helpers/onClickButtom.js";
 import { findProduct } from "./helpers/findProduct.js";
 import { modalWindow } from "./helpers/modal.js";
+import { onSearch } from "./helpers/onSearch.js";
+
 
 
 
 
 const list = document.querySelector(".js-list");
-
 const search = document.querySelector(".js-input");
 const favoriteArr = JSON.parse(localStorage.getItem(common.KEY_FAVORITE)) ?? [];
 const basketArr = JSON.parse(localStorage.getItem(common.KEY_BASKET)) ??[];
@@ -29,6 +30,7 @@ buttonRemove(favoriteArr, basketArr, list);
 
 
 list.addEventListener('click', onClick);
+search.addEventListener('input', _.debounce(onSearch, 500));
 
 function onClick(evt) {
   evt.preventDefault();
@@ -42,5 +44,13 @@ function onClick(evt) {
   onClickButton(evt,favoriteArr,basketArr);
 };
 
+
+
+
+
+
+
+
+  
 
 

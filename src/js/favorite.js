@@ -4,11 +4,13 @@ import { buttonRemove } from "./helpers/buttonRemove";
 import { onClickButton } from "./helpers/onClickButtom";
 import { modalWindow } from "./helpers/modal";
 import { findProduct } from "./helpers/findProduct";
+import { onSearch } from "./helpers/onSearch";
 
 
 
 
 const list = document.querySelector('.js-list');
+const search = document.querySelector(".js-input");
 const favorite = JSON.parse(localStorage.getItem(common.KEY_FAVORITE)) ?? [];
 const basket = JSON.parse(localStorage.getItem(common.KEY_BASKET)) ?? [];
 
@@ -20,6 +22,7 @@ buttonRemove(favorite, basket, list);
 
 
 list.addEventListener("click", onClick);
+search.addEventListener('input', _.debounce(onSearch, 500));
 
 
 
