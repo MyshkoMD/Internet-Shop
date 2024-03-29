@@ -1,4 +1,7 @@
-function createMarkup(arr, list) {
+
+const list = document.querySelector('.js-list');
+
+function createMarkup(arr) {
   let markup = '';
   if (!arr.length) {
    

@@ -1,7 +1,9 @@
 import { instruments } from "../backend";
 import { common } from "../common";
 import { createMarkup } from "./CreateMarkup";
-import { buttonRemove } from "./buttonRemove";
+import { buttonRemoveFavorite } from "../onClickFavorite";
+import { buttonRemoveBasket } from "../onClickBasket";
+
 
 
 
@@ -22,7 +24,8 @@ function onSearch (evt) {
 
   
 createMarkup(searchedList, list);
-buttonRemove(favorite, basket, list);
+  buttonRemoveFavorite();
+  buttonRemoveBasket()
 
 };
 
